@@ -2,10 +2,11 @@ import axios from 'axios';
 import React from 'react';
 
 const NoteCard = ({ note, onDelete, onEdit }) => {
-  const createdAt = new Date(note.createdAt);
-  const formattedDate = `${createdAt.getDate().toString().padStart(2, '0')}-${(createdAt.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}-${createdAt.getFullYear()}`;
+  const createdAt = note.createdAt ? new Date(note.createdAt) : null;
+
+  const formattedDate = createdAt
+    ? `${createdAt.toLocaleDateString('en-GB').replace(/\//g, '-')} ${createdAt.toLocaleTimeString('en-GB')}`
+    : "Date not available";
 
   const handleDelete = async () => {
     try {
@@ -26,19 +27,17 @@ const NoteCard = ({ note, onDelete, onEdit }) => {
         {note.description}
       </p>
 
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 gap-2">
+      <div className="flex items-center justify-between mt-4">
         <p className="text-gray-500 text-xs sm:text-sm whitespace-nowrap">
           Created on: {formattedDate}
         </p>
 
-        <div className="flex gap-2">
-          <button
-            onClick={handleDelete}
-            className="bg-red-500 hover:bg-red-700 text-white text-xs sm:text-sm px-3 py-1 rounded"
-          >
-            Delete
-          </button>
-        </div>
+        <button
+          onClick={handleDelete}
+          className="bg-red-500 hover:bg-red-700 text-white text-xs sm:text-sm px-3 py-1 rounded"
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

@@ -40,7 +40,6 @@ router.post("/add", middleWare, async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const notes = await Note.find();
-
     return res.status(200).json({
       success: true,
       message: "Notes retrieved successfully",
