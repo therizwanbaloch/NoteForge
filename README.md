@@ -3,6 +3,8 @@
 A powerful and minimal notes app to create, organize, and manage your ideas with ease.  
 NoteForge is designed to be fast, clean, and accessible across devices.
 
+**Live Demo:** [noteforge-lilac.vercel.app](https://noteforge-lilac.vercel.app)
+
 ---
 
 ## Features
